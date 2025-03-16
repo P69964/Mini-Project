@@ -1,0 +1,218 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title>spiceworld.com</title>
+    <style>
+        body {
+            font-family: "sztos-variable", sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #f1f1f1; /* Dim white background */
+            text-align: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            font-family: "sztos-variable", sans-serif;
+            font-variation-settings: 'wght' 400, 'wdth' 200;
+            color: black; /* Black text */
+            font-size: 3em;
+            margin-bottom: 20px;
+            opacity: 0; /* Initially hidden */
+            transform: translateY(50px); /* Start from below */
+            transition: opacity 1s ease-out, transform 1s ease-out; /* Fade and slide animation */
+        }
+
+        .content-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 80%;
+            opacity: 0;  /* Hide initially */
+            transform: translateY(50px);  /* Slide the content from below */
+            transition: opacity 1s ease-out, transform 1s ease-out;  /* Smooth fade and slide effect */
+            position: relative;
+        }
+
+        .chef-image {
+            width: 500px;
+            height: 500px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .text-container {
+            width: 50%;
+            text-align: left;
+            margin-left: 10%;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        p {
+            color: black;
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+
+        h2 {
+            color: black;
+            font-size: 2em;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .additional-text {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            color: black;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+
+        .top-left-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: auto;
+        }
+
+        .top-right-image {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: auto;
+        }
+
+        .link {
+            color: #0000EE;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        #cart-count {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: red;
+            color: white;
+            font-size: 14px;
+            border-radius: 50%;
+            padding: 5px 10px;
+        }
+
+        /* Footer Style */
+        .footer {
+            margin-top: 50px;
+            font-size: 1.2em;
+        }
+
+        .footer a {
+            color: #0000EE;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <img src="logo.jpg" alt="Spice World Logo" class="top-left-image">
+    <img src="shoppingcart.jpg" alt="Shopping Cart" class="top-right-image">
+
+    <h1>YOUR WORLD YOUR FLAVOUR</h1>
+
+    <div class="content-container" id="scrollContent">
+        <img src="chef.jpg" alt="Chef Image" class="chef-image">
+        <div class="text-container">
+            <p>
+                SpiceWorld was founded with a definite and compelling vision: to bring the world's finest spices from every corner of the globe to cooks around the world. A simple family business in a thriving spice market has become a global brand, renowned for its rich heritage, high quality, and passion for flavor.
+                <br><br>
+                Years back, our founders traveled across continents, from the colorful spice gardens of India to the Mediterranean sun fields, to find the freshest, most fragrant spices. They forged lasting connections with local farmers, so that each spice is obtained ethically, expertly mixed, and filled with authentic flavor.
+                <br><br>
+                Today, SpiceWorld continues to make daily meals an exceptional experience. Whether you're a home cook or a chef, our personally selected spices, herbs, and blends introduce the world's flavors to your kitchen.
+                <br><br>
+                At SpiceWorld, flavor is not merely a taste—it's an experience.
+            </p>
+        </div>
+    </div>
+
+    <h2 id="partners">Meet our international partners...</h2>
+
+    <div class="additional-text" id="extraText">
+        <a href="spices-india.html" class="link">Explore rare spices from India 💎</a>
+        <br>
+        <a href="spices-hawaii.html" class="link">Have your fill and tropicalize your food with Hawaiian spices 🌴</a>
+        <br>
+        <a href="spices-mexico.html" class="link">If you're an adventurous one, attempt the tongue-melting Mexican chillies 🌶️🔥</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const observer = new IntersectionObserver(
+                (entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.3 }
+            );
+
+            const content = document.getElementById("scrollContent");
+            observer.observe(content);
+
+            const partners = document.getElementById("partners");
+            observer.observe(partners);
+
+            const heading = document.querySelector("h1");
+            observer.observe(heading);
+
+            const chefImage = document.querySelector(".chef-image");
+            observer.observe(chefImage);
+
+            const textContainer = document.querySelector(".text-container");
+            observer.observe(textContainer);
+
+            const extraText = document.getElementById("extraText");
+            observer.observe(extraText);
+        });
+    </script>
+
+    <img src="shoppingcart.jpg" alt="Shopping Cart" class="top-right-image" onclick="redirectToCheckout()">
+    <span id="cart-count">0</span> 
+
+    <script>
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            document.getElementById('cart-count').innerText = cart.length;
+        }
+
+        function redirectToCheckout() {
+            window.location.href = "checkout.html";
+        }
+
+        updateCartCount();
+    </script>
+
+    <div class="footer">
+        <p><a href="feedback.html" class="link">We value your opinion! Give us your feedback</a></p>
+    </div>
+
+</body>
+</html>

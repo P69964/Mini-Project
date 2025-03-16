@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spices from Mexico</title>
+    <style>
+        body {
+            font-family: "sztos-variable", sans-serif;
+            background-color: #f1f1f1;
+            color: black;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-top: 50px;
+            color: black;
+        }
+
+        .images-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+            padding: 0 20px;
+        }
+
+        .image-item {
+            width: 45%;
+            margin-bottom: 20px;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .add-to-cart-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #E63946;
+            color: white;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #D62828;
+        }
+
+        .link-back {
+            margin-top: 30px;
+            font-size: 1.2em;
+            color: #0000EE;
+            text-decoration: none;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .image-item {
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+            .image-item {
+                width: 100%;
+            }
+            .add-to-cart-btn {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>The Fiery Flavors of Mexico 🔥</h1>
+
+    <div class="images-container">
+        <div class="image-item">
+            <img src="mexicanspice1.jpg" alt="Ancho Chili">
+            <p>Ancho Chili</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Ancho Chili', 12)">Add to Cart (£12)</button>
+        </div>
+        <div class="image-item">
+            <img src="mexicanspice2.jpg" alt="Chipotle Powder">
+            <p>Chipotle Powder</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Chipotle Powder', 14)">Add to Cart (£14)</button>
+        </div>
+        <div class="image-item">
+            <img src="mexicanspice3.jpg" alt="Mexican Oregano">
+            <p>Mexican Oregano</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Mexican Oregano', 10)">Add to Cart (£10)</button>
+        </div>
+        <div class="image-item">
+            <img src="mexicanspice4.jpg" alt="Pasilla Chili">
+            <p>Pasilla Chili</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Pasilla Chili', 13)">Add to Cart (£13)</button>
+        </div>
+    </div>
+
+    <a href="spiceworld.html" class="link-back">Back to the main page</a>
+
+    <script>
+        function addToCart(spiceName, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: spiceName, price: price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(spiceName + " has been added to your cart for £" + price);
+        }
+    </script>
+
+
+
+<script>
+    function addToCart(spiceName, price) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push({ name: spiceName, price: price });
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        alert(spiceName + " has been added to your cart for £" + price);
+        updateCartCount();
+    }
+
+    function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let cartCount = document.getElementById('cart-count');
+        if (cartCount) {
+            cartCount.innerText = cart.length;
+        }
+    }
+
+    updateCartCount();
+</script>
+
+</body>
+</html>

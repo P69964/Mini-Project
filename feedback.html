@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <style>
+        body {
+            font-family: "sztos-variable", sans-serif;
+            background-color: #f1f1f1;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-top: 50px;
+            color: black;
+        }
+
+        .feedback-container {
+            width: 80%;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .input-field {
+            width: 80%;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 1.2em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        textarea {
+            width: 80%;
+            height: 200px;
+            padding: 10px;
+            font-size: 1.2em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1.2em;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .link-back {
+            margin-top: 30px;
+            font-size: 1.2em;
+            color: #0000EE;
+            text-decoration: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>We Value Your Feedback</h1>
+
+    <div class="feedback-container">
+        <form id="feedbackForm">
+            <input type="text" id="firstName" class="input-field" placeholder="First Name" required><br>
+            <input type="text" id="lastName" class="input-field" placeholder="Last Name" required><br>
+            <input type="tel" id="phone" class="input-field" placeholder="Phone Number" required><br>
+            <input type="email" id="email" class="input-field" placeholder="Email" required><br>
+            <textarea id="feedback" placeholder="Write your feedback here..." required></textarea><br>
+            <button type="submit" class="submit-btn">Submit Feedback</button>
+        </form>
+    </div>
+
+    <a href="spiceworld.html" class="link-back">Back to the main page</a>
+
+    <script>
+        document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
+            const phone = document.getElementById("phone").value;
+            const email = document.getElementById("email").value;
+            const feedback = document.getElementById("feedback").value;
+
+            if (firstName && lastName && phone && email && feedback) {
+                alert("Thank you for your feedback, " + firstName + "!");
+                // You can also save this data to localStorage or send it to your server here
+                // For now, just clearing the form
+                document.getElementById("feedbackForm").reset();
+            } else {
+                alert("Please fill out all fields before submitting.");
+            }
+        });
+    </script>
+
+</body>
+</html>

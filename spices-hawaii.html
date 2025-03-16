@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hawaiian Spices</title>
+    <style>
+        body {
+            font-family: "sztos-variable", sans-serif;
+            background-color: #f1f1f1;
+            color: black;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-top: 50px;
+            color: black;
+        }
+
+        .images-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+            padding: 0 20px;
+        }
+
+        .image-item {
+            width: 45%;
+            margin-bottom: 20px;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Button Styling */
+        .add-to-cart-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #45a049;
+        }
+
+        .link-back {
+            margin-top: 30px;
+            font-size: 1.2em;
+            color: #0000EE;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .image-item {
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+            .image-item {
+                width: 100%;
+            }
+            .add-to-cart-btn {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Aloha! Taste the Essence of Hawaii...</h1>
+
+    <div class="images-container">
+        <!-- Hawaiian Spice Items -->
+        <div class="image-item">
+            <img src="hawaiianspice1.jpg" alt="Red Hawaiian Sea Salt">
+            <p>Red Hawaiian Sea Salt</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Red Hawaiian Sea Salt', 18)">Add to Cart (£18)</button>
+        </div>
+        <div class="image-item">
+            <img src="hawaiianspice2.jpg" alt="Kiawe Smoked Salt">
+            <p>Kiawe Smoked Salt</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Kiawe Smoked Salt', 20)">Add to Cart (£20)</button>
+        </div>
+        <div class="image-item">
+            <img src="hawaiianspice3.jpg" alt="Guava Wood Smoked Pepper">
+            <p>Guava Wood Smoked Pepper</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Guava Wood Smoked Pepper', 22)">Add to Cart (£22)</button>
+        </div>
+        <div class="image-item">
+            <img src="hawaiianspice4.jpg" alt="Lilikoi Chili Powder">
+            <p>Lilikoi Chili Powder</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Lilikoi Chili Powder', 19)">Add to Cart (£19)</button>
+        </div>
+    </div>
+
+    <a href="spiceworld.html" class="link-back">Back to the main page</a>
+
+    <script>
+        // Add to Cart function (works across all pages)
+        function addToCart(spiceName, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let item = cart.find(item => item.name === spiceName);
+            if (item) {
+                item.quantity += 1;
+            } else {
+                cart.push({ name: spiceName, price: price, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(spiceName + " has been added to your cart for £" + price);
+        }
+    </script>
+
+</body>
+
+
+
+
+<script>
+    function addToCart(spiceName, price) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push({ name: spiceName, price: price });
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        alert(spiceName + " has been added to your cart for £" + price);
+        updateCartCount();
+    }
+
+    function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let cartCount = document.getElementById('cart-count');
+        if (cartCount) {
+            cartCount.innerText = cart.length;
+        }
+    }
+
+    updateCartCount();
+</script>
+
+</html>

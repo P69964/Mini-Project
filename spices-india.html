@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spices from India</title>
+    <style>
+        body {
+            font-family: "sztos-variable", sans-serif;
+            background-color: #f1f1f1;
+            color: black;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-top: 50px;
+            color: black;
+        }
+
+        .images-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+            padding: 0 20px;
+        }
+
+        .image-item {
+            width: 45%;
+            margin-bottom: 20px;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Button Styling */
+        .add-to-cart-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #45a049;
+        }
+
+        .link-back {
+            margin-top: 30px;
+            font-size: 1.2em;
+            color: #0000EE;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .image-item {
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+            .image-item {
+                width: 100%;
+            }
+            .add-to-cart-btn {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>An Exotic Adventure...</h1>
+
+    <div class="images-container">
+        <!-- Spice items -->
+        <div class="image-item">
+            <img src="indianspice1.jpg" alt="Cumin">
+            <p>Cumin</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Cumin', 15)">Add to Cart (£15)</button>
+        </div>
+        <div class="image-item">
+            <img src="indianspice2.jpg" alt="Turmeric">
+            <p>Turmeric</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Turmeric', 15)">Add to Cart (£15)</button>
+        </div>
+        <div class="image-item">
+            <img src="indianspice3(garam masala).jpg" alt="Garam Masala">
+            <p>Garam Masala</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Garam Masala', 15)">Add to Cart (£15)</button>
+        </div>
+        <div class="image-item">
+            <img src="indian4(asafoetida).jpg" alt="Asafoetida">
+            <p>Asafoetida</p>
+            <button class="add-to-cart-btn" onclick="addToCart('Asafoetida', 15)">Add to Cart (£15)</button>
+        </div>
+    </div>
+
+    <a href="spiceworld.html" class="link-back">Back to the main page</a>
+
+    <script>
+        // Add to Cart function
+        function addToCart(spiceName, price) {
+            // Save the cart items to localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: spiceName, price: price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(spiceName + " has been added to your cart for £" + price);
+        }
+    </script>
+
+</body>
+
+<script>
+    function addToCart(spiceName, price) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push({ name: spiceName, price: price });
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        alert(spiceName + " has been added to your cart for £" + price);
+        updateCartCount();
+    }
+
+    function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let cartCount = document.getElementById('cart-count');
+        if (cartCount) {
+            cartCount.innerText = cart.length;
+        }
+    }
+
+    updateCartCount();
+</script>
+
+
+</html>
